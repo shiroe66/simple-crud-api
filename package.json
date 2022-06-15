@@ -1,0 +1,35 @@
+{
+  "name": "crud-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiroe66/simple-crud-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shiroe66/simple-crud-api/issues"
+  },
+  "homepage": "https://github.com/shiroe66/simple-crud-api#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.44",
+    "@types/uuid": "^8.3.4",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "jest": "^28.1.1",
+    "uuid": "^8.3.2"
+  }
+}
