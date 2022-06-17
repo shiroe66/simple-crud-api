@@ -1,6 +1,7 @@
 import "dotenv/config"
 import { createServer } from "http"
 import { getUser, getUsers } from "./controller/usersController"
+import { isValidId } from "./helpers/isValidId"
 import { parseURL } from "./helpers/parseURL"
 
 const server = createServer((req, res) => {
@@ -13,7 +14,13 @@ const server = createServer((req, res) => {
     req.method === "GET"
   ) {
     const id = url.split("/").pop() as string
-    getUser(req, res, id)
+
+    if (isValidId(id)) {
+      getUser(req, res, id)
+    } else {
+      res.writeHead(500, { "Content-type": "application/json" })
+      res.end(JSON.stringify({ message: "Route not found" }))
+    }
   } else {
     res.writeHead(404, { "Content-type": "application/json" })
     res.end(JSON.stringify({ message: "Route not found" }))
