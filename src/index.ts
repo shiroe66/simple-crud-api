@@ -18,7 +18,7 @@ const server = createServer((req, res) => {
     if (isValidId(id)) {
       getUser(req, res, id)
     } else {
-      res.writeHead(500, { "Content-type": "application/json" })
+      res.writeHead(400, { "Content-type": "application/json" })
       res.end(JSON.stringify({ message: "Route not found" }))
     }
   } else {

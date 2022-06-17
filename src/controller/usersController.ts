@@ -24,7 +24,7 @@ export const getUser = async (
       res.writeHead(200, { "Content-type": "application/json" })
       res.end(JSON.stringify(user))
     } else {
-      res.writeHead(400, { "Content-type": "application/json" })
+      res.writeHead(404, { "Content-type": "application/json" })
       res.end(JSON.stringify({ message: "User not found" }))
     }
   } catch (error) {
