@@ -16,7 +16,7 @@ const server = createServer((req, res) => {
       getUser(req, res, id)
     } else {
       res.writeHead(400, { 'Content-type': 'application/json' })
-      res.end(JSON.stringify({ message: 'Route not found' }))
+      res.end(JSON.stringify({ message: 'ID is not valid' }))
     }
   } else if (url === '/api/users' && req.method === 'POST') {
     addUser(req, res)
@@ -27,7 +27,7 @@ const server = createServer((req, res) => {
       updateUser(req, res, id)
     } else {
       res.writeHead(400, { 'Content-type': 'application/json' })
-      res.end(JSON.stringify({ message: 'Route not found' }))
+      res.end(JSON.stringify({ message: 'ID is not valid' }))
     }
   } else if (url.match(new RegExp(/^\/api\/users\/[\w-]+$/)) && req.method === 'DELETE') {
     const id = url.split('/').pop() as string
@@ -36,7 +36,7 @@ const server = createServer((req, res) => {
       deleteUser(req, res, id)
     } else {
       res.writeHead(400, { 'Content-type': 'application/json' })
-      res.end(JSON.stringify({ message: 'Route not found' }))
+      res.end(JSON.stringify({ message: 'ID is not valid' }))
     }
   } else {
     res.writeHead(404, { 'Content-type': 'application/json' })
