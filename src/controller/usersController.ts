@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { add, find, findAll, update } from '../models/usersModel'
+import { add, find, findAll, update, remove } from '../models/usersModel'
 import { User } from '../types/user.types'
 
 export const getUsers = async (req: IncomingMessage, res: ServerResponse) => {
@@ -82,6 +82,23 @@ export const updateUser = async (req: IncomingMessage, res: ServerResponse, id: 
       const updatedUser = await update(id, updUser)
       res.writeHead(200, { 'Content-type': 'application/json' })
       res.end(JSON.stringify(updatedUser))
+    } else {
+      res.writeHead(404, { 'Content-type': 'application/json' })
+      res.end(JSON.stringify({ message: 'User not found' }))
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const deleteUser = async (req: IncomingMessage, res: ServerResponse, id: string) => {
+  try {
+    const user = await find(id)
+
+    if (user) {
+      await remove(id)
+      res.writeHead(200, { 'Content-type': 'application/json' })
+      res.end(JSON.stringify({ message: 'User removed' }))
     } else {
       res.writeHead(404, { 'Content-type': 'application/json' })
       res.end(JSON.stringify({ message: 'User not found' }))

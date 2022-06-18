@@ -31,3 +31,11 @@ export const update = (id: string, data: User) => {
     res(users[index])
   })
 }
+
+export const remove = (id: string): Promise<void> => {
+  return new Promise((res, rej) => {
+    const index = users.findIndex((user) => user.id === id)
+    users.splice(index, 1)
+    res()
+  })
+}
