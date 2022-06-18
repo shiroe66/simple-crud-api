@@ -97,7 +97,7 @@ export const deleteUser = async (req: IncomingMessage, res: ServerResponse, id: 
 
     if (user) {
       await remove(id)
-      res.writeHead(200, { 'Content-type': 'application/json' })
+      res.writeHead(204, { 'Content-type': 'application/json' })
       res.end(JSON.stringify({ message: 'User removed' }))
     } else {
       res.writeHead(404, { 'Content-type': 'application/json' })
