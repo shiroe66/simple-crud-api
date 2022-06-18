@@ -6,10 +6,10 @@ export const findAll = () => {
   return new Promise((res, rej) => res(users))
 }
 
-export const find = (id: string) => {
+export const find = (id: string): Promise<User> => {
   return new Promise((res, rej) => {
     const user = users.find((user) => user.id === id)
-    res(user)
+    res(user as User)
   })
 }
 
@@ -21,5 +21,13 @@ export const add = (user: User) => {
     }
     users.push(newUser)
     res(newUser)
+  })
+}
+
+export const update = (id: string, data: User) => {
+  return new Promise((res, rej) => {
+    const index = users.findIndex((user) => user.id === id)
+    users[index] = { id, ...data }
+    res(users[index])
   })
 }

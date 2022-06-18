@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { add, find, findAll } from '../models/usersModel'
+import { add, find, findAll, update } from '../models/usersModel'
 import { User } from '../types/user.types'
 
 export const getUsers = async (req: IncomingMessage, res: ServerResponse) => {
@@ -53,6 +53,38 @@ export const addUser = async (req: IncomingMessage, res: ServerResponse) => {
     } else {
       res.writeHead(400, { 'Content-type': 'application/json' })
       res.end(JSON.stringify({ message: "Body doesn't contain requirement fields" }))
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const updateUser = async (req: IncomingMessage, res: ServerResponse, id: string) => {
+  try {
+    const user = await find(id)
+
+    if (user) {
+      const buffers: Uint8Array[] = []
+
+      for await (const chunk of req) {
+        buffers.push(chunk)
+      }
+
+      const data = Buffer.concat(buffers).toString()
+      const { username, age, hobbies } = JSON.parse(data)
+
+      const updUser = {
+        username: username || user.username,
+        age: age || user.age,
+        hobbies: hobbies || user.hobbies,
+      }
+
+      const updatedUser = await update(id, updUser)
+      res.writeHead(200, { 'Content-type': 'application/json' })
+      res.end(JSON.stringify(updatedUser))
+    } else {
+      res.writeHead(404, { 'Content-type': 'application/json' })
+      res.end(JSON.stringify({ message: 'User not found' }))
     }
   } catch (error) {
     console.error(error)
