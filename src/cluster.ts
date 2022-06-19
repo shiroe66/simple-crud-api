@@ -11,5 +11,6 @@ if (cluster.isPrimary) {
 }
 
 if (cluster.isWorker) {
-  import("./index.js")
+  import("./index")
+  console.log(cluster.worker?.id, "work")
 }
