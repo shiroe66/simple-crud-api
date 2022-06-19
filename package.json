@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:prod": "webpack",
-    "start:dev": "nodemon",
-    "start:multi": "nodemon ./src/cluster.ts",
+    "start:dev": "nodemon -w src src/index.ts",
+    "start:multi": "nodemon -w src src/cluster.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
