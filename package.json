@@ -7,7 +7,7 @@
     "start:prod": "webpack",
     "start:dev": "nodemon -w src src/index.ts",
     "start:multi": "nodemon -w src src/cluster.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/shiroe66/simple-crud-api#readme",
   "devDependencies": {
+    "@types/jest": "^28.1.2",
     "@types/node": "^17.0.44",
+    "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.16",
+    "ts-jest": "^28.0.5",
     "ts-loader": "^9.3.0",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.3",
@@ -34,6 +37,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "jest": "^28.1.1",
+    "supertest": "^6.2.3",
     "uuid": "^8.3.2"
   }
 }
