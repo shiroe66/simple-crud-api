@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:prod": "webpack",
+    "start:prod": "npx webpack && node ./dist/bundle.js",
     "start:dev": "nodemon -w src src/index.ts",
     "start:multi": "nodemon -w src src/cluster.ts",
     "test": "jest"
